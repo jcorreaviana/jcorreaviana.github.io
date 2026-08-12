@@ -39,7 +39,7 @@ Crie um arquivo `.md` em `src/content/blog/`, seguindo o padrão:
 title: 'Título do post'
 description: 'Uma frase resumindo o post (aparece na listagem e no SEO)'
 pubDate: 'Aug 20 2026'
-category: 'rag-agentes'   # opções: sabatico | rag-agentes | transformer-ldm | carreira
+category: 'rag-agentes'   # opções: sabatico | rag-agentes | transformers | carreira
 tags: ['tag1', 'tag2']
 ---
 
@@ -61,7 +61,7 @@ npm run preview  # serve a versão de produção localmente
 
 - `sabatico` — reflexões sobre o processo de estudo e a transição de carreira
 - `rag-agentes` — RAG, agentes, ReAct, harness, LLMOps
-- `transformer-ldm` — transformers, attention, LDM, fine-tuning
+- `transformers` — transformers, attention, fine-tuning
 - `carreira` — plano de retorno ao mercado, aprendizados profissionais
 
 ## Posts já incluídos como ponto de partida
