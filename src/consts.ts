@@ -3,3 +3,15 @@
 
 export const SITE_TITLE = 'José Correa Viana'; // TODO: ajuste para o nome/marca que você quer usar
 export const SITE_DESCRIPTION = 'Anotações técnicas sobre transformers, LDM, RAG e agentes de IA — construído durante um sabático de estudo aplicado.';
+
+export const AUTHOR_NAME = 'José Corrêa Viana';
+export const AUTHOR_BIO =
+	'Engenheiro de software com anos de experiência liderando times técnicos, atualmente em um sabático de estudo aplicado em IA — do fundamento matemático até transformers, RAG e agentes.';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/jcorreaviana/';
+
+export const CATEGORY_LABELS: Record<string, string> = {
+	sabatico: 'Sabático',
+	'rag-agentes': 'RAG & Agentes',
+	'transformer-ldm': 'Transformers & LDM',
+	carreira: 'Carreira',
+};
