@@ -2,6 +2,7 @@
 title: 'O mapa antes do território: como é a arquitetura-base de um projeto de ML'
 description: 'As oito etapas de qualquer projeto de ML — dos dados ao deploy — com os tradeoffs reais de cada uma, exemplificados em um cenário hipotético de detecção de fraude.'
 pubDate: 'Aug 18 2026'
+heroImage: '../../assets/arquitetura-base-ml.png'
 category: 'fundamentos'
 tags: ['ml-fundamentos', 'eda', 'treinamento', 'avaliacao', 'deploy']
 ---
@@ -11,6 +12,8 @@ import ConfusionMatrixDemo from '../../components/ConfusionMatrixDemo.jsx'
 Antes de falar de qualquer peça isolada (dado, modelo, treinamento), vale desenhar o mapa inteiro uma vez. É fácil aprender fragmentos e nunca ver como eles se encaixam, nem onde cada decisão te compromete lá na frente. Este post é esse mapa, com os tradeoffs reais de cada etapa. Os próximos da série vão aprofundar cada uma.
 
 **Uma nota antes de começar:** os exemplos usados ao longo do texto (e a simulação interativa mais adiante) giram em torno de um cenário hipotético de detecção de fraude em transações. Não é um dataset real nem um projeto específico; é só um fio condutor para tornar cada etapa concreta em vez de abstrata. A lógica se aplica a qualquer domínio supervisionado e fraude é só o exemplo que atravessa o texto inteiro.
+
+![Fluxo de 8 etapas de um projeto de ML: coleta, EDA, transformação, carga, arquitetura, treinamento, avaliação e deploy](../../assets/arquitetura-base-ml.png)
 
 ## 1. Coleta / Extração
 
