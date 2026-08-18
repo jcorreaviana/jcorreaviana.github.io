@@ -14,7 +14,9 @@ const blog = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: z.optional(image()),
-			category: z.enum(['sabatico', 'rag-agentes', 'transformers', 'carreira']).optional(),
+			category: z
+				.enum(['sabatico', 'rag-agentes', 'transformers', 'carreira', 'fundamentos'])
+				.optional(),
 			tags: z.array(z.string()).optional(),
 		}),
 });

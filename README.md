@@ -63,10 +63,4 @@ npm run preview  # serve a versão de produção localmente
 - `rag-agentes` — RAG, agentes, ReAct, harness, LLMOps
 - `transformers` — transformers, attention, fine-tuning
 - `carreira` — plano de retorno ao mercado, aprendizados profissionais
-
-## Posts já incluídos como ponto de partida
-
-- `aprendizados-do-sabatico.md` — post de abertura
-- `rag-vs-fine-tuning.md` — exemplo de post técnico da categoria RAG/Agentes
-
-Use esses dois como referência de tom e estrutura para os próximos.
+- `fundamentos` — fundamentos de ML/IA, arquitetura de projetos, conceitos base

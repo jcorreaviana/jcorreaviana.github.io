@@ -14,4 +14,5 @@ export const CATEGORY_LABELS: Record<string, string> = {
 	'rag-agentes': 'RAG & Agentes',
 	transformers: 'Transformers',
 	carreira: 'Carreira',
+	fundamentos: 'Fundamentos',
 };
