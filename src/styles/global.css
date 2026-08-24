@@ -85,6 +85,23 @@ input {
 }
 table {
 	width: 100%;
+	border-collapse: collapse;
+}
+th,
+td {
+	padding: 0.5em 0.75em;
+	border: 1px solid rgb(var(--gray-light));
+	text-align: left;
+}
+thead th {
+	background-color: rgb(var(--gray-light));
+	color: rgb(var(--black));
+}
+tbody tr:nth-child(even) {
+	background-color: rgba(var(--gray-light), 0.5);
+}
+tbody tr:hover {
+	background-color: rgba(var(--gray), 15%);
 }
 img {
 	max-width: 100%;
