@@ -1,0 +1,64 @@
+---
+title: 'Adaptando um modelo pequeno com LoRA: exemplo prático e os números do antes/depois'
+description: 'Fine-tuning LoRA de um Qwen2.5-0.5B para extrair dados estruturados de anúncios de carro usado, com os números reais de antes e depois, e uma lição sobre overfitting que custou uma rodada extra de treino.'
+pubDate: 'Aug 24 2026'
+heroImage: '../../assets/fine-tuning.png'
+category: 'fundamentos'
+tags: ['fine-tuning', 'lora', 'llm', 'avaliacao']
+---
+
+import FineTuningDemo from '../../components/FineTuningDemo.jsx'
+
+Fine-tuning apareceu como variação do fluxo canônico no post anterior desta série. Este post é essa variação na prática: peguei um modelo pequeno, ajustei ele numa task específica com LoRA, e comparei o antes e o depois com números reais, não estimativa. Inclui o experimento que deu errado, porque a lição dele vale tanto quanto o resultado que deu certo.
+
+---
+
+## 1. O problema de negócio
+
+Empresa que lida com grande volume de texto não estruturado (anúncio, formulário, descrição de produto, ticket de suporte) precisa transformar isso em dado estruturado e confiável antes de conseguir usar em qualquer sistema a jusante. É uma dor comum: e-commerce processando anúncio de vendedor, seguradora processando laudo, banco processando descrição de transação. A tentação natural é jogar um LLM genérico nisso, já que ele "entende linguagem". O problema é que entender a língua e entender o vocabulário e os critérios do negócio são coisas diferentes, e o modelo genérico só tem a primeira.
+
+## 2. Por que o modelo padrão não resolve sozinho
+
+Rodei o Qwen2.5-0.5B-Instruct, sem nenhum ajuste, na task de extrair dados de anúncio de carro usado: marca, modelo, ano, km, câmbio, estado geral, avarias, preço, faixa de preço justo, sinais de atenção. Ele erra formato (preço sai como string, não número, 0% de acerto no campo). Inventa categoria que não existe no vocabulário definido, como no exemplo real de saída `"estado_geral": "excepcional"`, quando as únicas opções válidas são excelente, bom ou regular. E não tem nenhuma noção de conceitos que só fazem sentido dentro do domínio, como `faixa_preco_justo` e `sinais_atencao` (0% de acerto nos dois).
+
+O ponto que importa aqui: o custo de resolver isso na mão, com prompt cada vez mais elaborado, parsing defensivo, validação pós-hoc tentando consertar o que o modelo devolveu errado, não desaparece só porque o modelo usado é grande e caro. Ele só se move para outro lugar da pilha.
+
+## 3. O que o fine-tuning resolve, na prática
+
+Com 300 exemplos sintéticos e poucos minutos de treino local (RTX 5060, 8GB de VRAM), o mesmo modelo pequeno passou a acertar formato e vocabulário do negócio de forma consistente:
+
+- `preco_anunciado`: 0% → 100%
+- `avarias`: 13% → 87%
+- `faixa_preco_justo`: 0% → 73%
+
+O modelo não ficou mais inteligente de forma geral. Ficou confiável para essa task específica, que é o que importa em produção. Isso muda a decisão de arquitetura: em vez de pagar inferência num modelo grande tentando compensar via prompt gigante e validação por fora, um modelo pequeno e especializado, rodando local, entrega o mesmo resultado prático com custo de operação bem menor.
+
+## 4. Custo relativo entre as abordagens
+
+Os números abaixo são ordem de grandeza conceitual, não medição deste projeto. Servem para situar o fine-tuning LoRA entre as outras abordagens possíveis para esse tipo de tarefa, não como benchmark.
+
+| Abordagem | Custo aproximado | Quando faz sentido |
+|---|---|---|
+| Pré-treinar um modelo do zero | Centenas de milhares a milhões de dólares em compute, mesmo para modelos pequenos | Praticamente nunca, a menos que exista uma razão estrutural forte (domínio muito distante de qualquer corpus público, requisito de dado 100% proprietário) |
+| Ajuste manual (prompt engineering + parsing defensivo) | Baixo custo de infraestrutura, mas custo recorrente de manutenção: cada variação nova de input pode quebrar o parsing e exige ajuste manual contínuo | Prova de conceito rápida, volume baixo, tolerância alta a erro |
+| Fine-tuning com LoRA | Da ordem de dezenas a poucas centenas de dólares em compute (ou zero, em GPU própria como neste projeto), com custo de manutenção menor: erros de padrão viram novos exemplos de treino, não novo código de parsing | Volume alto, vocabulário e formato estáveis, retorno justifica investir num dataset de treino |
+
+O ajuste manual parece mais barato no primeiro momento porque não exige treino nem dataset. Mas o custo dele não é fixo, ele escala com a variedade de input que aparece em produção: cada novo jeito de escrever um anúncio, cada campo novo, cada exceção, vira mais uma regra de parsing para manter. O fine-tuning desloca esse custo para o início do processo (montar um dataset representativo) e reduz a manutenção contínua, porque o padrão fica embutido no modelo, não numa cadeia de regras externas.
+
+## 5. Antes e depois, exemplo por exemplo
+
+Números agregados escondem caso individual, e é no caso individual que fica visível o que muda de verdade. Abaixo estão os 15 exemplos usados na avaliação, held-out (fora do treino), comparando lado a lado a saída do modelo base, a saída com LoRA e o resultado esperado. Navegue entre eles e olhe onde cada versão acerta e onde erra campo a campo.
+
+<FineTuningDemo client:load />
+
+## 6. A lição que vale mais que o resultado
+
+Depois desse resultado, tentei melhorar ainda mais aumentando o treino de 3 para 7 épocas. Piorou. O `eval_loss` de treino caiu bastante, de 0.615 para 0.239, parecendo uma melhora clara. Mas a avaliação contra os mesmos 15 exemplos, com fraseado mais variado que o do gerador sintético, mostrou queda em vários campos, incluindo o exact-match geral.
+
+O que aconteceu: o modelo decorou o jeito de escrever do dataset sintético, o "molde" de frase do gerador, em vez de aprender o padrão real por trás dele. É um risco concreto em produção. Uma métrica de treino que parece ótima pode não se sustentar diante da variedade real de como as pessoas escrevem. A lição não é sobre o treino, é sobre o dado: qualidade e variedade do dataset é o que limita o resultado, não a quantidade de passadas sobre ele. Mais épocas sobre os mesmos 270 exemplos não ensinou nada novo, só reforçou o que já estava lá, inclusive o ruído do formato de frase.
+
+## 7. Fechamento
+
+Resumindo: um modelo pequeno, depois de fine-tuning, resolveu uma task de extração de dados que o modelo genérico não resolvia. Poucos minutos de treino, rodando em GPU local, sem depender de API paga. E a rodada que piorou o resultado deixou mais claro o que realmente limita esse tipo de projeto: o dataset, não o número de épocas.
+
+Código completo do treino, avaliação e dos dois experimentos (v1 e v2) no [repositório fine-tuning-lora](https://github.com/jcorreaviana/fine-tuning-lora).

@@ -1,0 +1,1121 @@
+{
+  "resumo_por_campo": {
+    "marca": {
+      "base": 0.0667,
+      "lora": 0.3333
+    },
+    "modelo": {
+      "base": 0.1333,
+      "lora": 0.6667
+    },
+    "ano": {
+      "base": 1.0,
+      "lora": 1.0
+    },
+    "km": {
+      "base": 0.8667,
+      "lora": 1.0
+    },
+    "cambio": {
+      "base": 0.2667,
+      "lora": 0.8
+    },
+    "estado_geral": {
+      "base": 0.0667,
+      "lora": 0.5333
+    },
+    "avarias": {
+      "base": 0.1333,
+      "lora": 0.8667
+    },
+    "preco_anunciado": {
+      "base": 0.0,
+      "lora": 1.0
+    },
+    "faixa_preco_justo": {
+      "base": 0.0,
+      "lora": 0.7333
+    },
+    "sinais_atencao": {
+      "base": 0.0,
+      "lora": 0.6
+    },
+    "exact_match": {
+      "base": 0.0,
+      "lora": 0.0667
+    }
+  },
+  "exemplos": [
+    {
+      "id": 1,
+      "input": "Vendo Civic 2018 automático, 78 mil km rodados, único dono, revisões em dia, único detalhe é um risco no para-choque. R$ 89.900, aceito troca.",
+      "esperado": {
+        "marca": "Honda",
+        "modelo": "Civic",
+        "ano": 2018,
+        "km": 78000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [
+          "risco no para-choque"
+        ],
+        "preco_anunciado": 89900,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "saida_base": {
+        "marca": "Civic",
+        "modelo": "2018",
+        "ano": 2018,
+        "km": 78000,
+        "cambio": "auto",
+        "estado_geral": "excepcional",
+        "avarias": [
+          "excepcional"
+        ],
+        "preco_anunciado": "R$ 89.900",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "riscos na segurança do parque"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Honda",
+        "modelo": "Civic",
+        "ano": 2018,
+        "km": 78000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [
+          "riscos"
+        ],
+        "preco_anunciado": 89900,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": true,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": true,
+        "avarias": false,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": true
+      }
+    },
+    {
+      "id": 2,
+      "input": "Corolla 2020 automático, 45.000 km, único dono, todas as revisões na concessionária, sem avarias. R$ 118.000.",
+      "esperado": {
+        "marca": "Toyota",
+        "modelo": "Corolla",
+        "ano": 2020,
+        "km": 45000,
+        "cambio": "automatico",
+        "estado_geral": "excelente",
+        "avarias": [],
+        "preco_anunciado": 118000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "saida_base": {
+        "marca": "Corolla",
+        "modelo": "Corolla",
+        "ano": 2020,
+        "km": 45000,
+        "cambio": "Automático",
+        "estado_geral": "Excelente",
+        "avarias": [
+          "Sem avarius"
+        ],
+        "preco_anunciado": "R$ 118.000",
+        "faixa_preco_justo": "Dentro da media",
+        "sinais_atencao": [
+          "Não há avarius"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Corolla",
+        "ano": 2020,
+        "km": 45000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 118000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": false,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": true
+      }
+    },
+    {
+      "id": 3,
+      "input": "Onix 2019 manual, 62.000 km rodados, revisões em dia, sem avarias. R$ 58.500.",
+      "esperado": {
+        "marca": "Chevrolet",
+        "modelo": "Onix",
+        "ano": 2019,
+        "km": 62000,
+        "cambio": "manual",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 58500,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "saida_base": {
+        "marca": "Onix",
+        "modelo": "2019",
+        "ano": 2019,
+        "km": 62000,
+        "cambio": "manual",
+        "estado_geral": "excepcional",
+        "avarias": [
+          "exaustiva"
+        ],
+        "preco_anunciado": "R$ 58.500",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "Avaliação: Excepcional"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Onix",
+        "ano": 2019,
+        "km": 62000,
+        "cambio": "manual",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 58500,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": true,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": true,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": true
+      }
+    },
+    {
+      "id": 4,
+      "input": "HB20 2017 manual, 250.000 km rodados, revisões em dia, único detalhe é desgaste no banco. R$ 34.000. Carro de leilão, documentação ok.",
+      "esperado": {
+        "marca": "Hyundai",
+        "modelo": "HB20",
+        "ano": 2017,
+        "km": 250000,
+        "cambio": "manual",
+        "estado_geral": "bom",
+        "avarias": [
+          "desgaste no banco"
+        ],
+        "preco_anunciado": 34000,
+        "faixa_preco_justo": "abaixo_da_media",
+        "sinais_atencao": [
+          "km_incompativel_com_idade",
+          "preco_muito_abaixo_da_media",
+          "mencao_a_sinistro_leilao_ou_urgencia"
+        ]
+      },
+      "saida_base": {
+        "marca": "HB",
+        "modelo": "2017",
+        "ano": 2017,
+        "km": 250.0,
+        "cambio": "manual",
+        "estado_geral": "excepcional",
+        "avarias": [
+          "desgaste no banco"
+        ],
+        "preco_anunciado": "R$ 34.000",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "Desgaste no banco"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Cobalt",
+        "ano": 2017,
+        "km": 250000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [
+          "desgaste no banco"
+        ],
+        "preco_anunciado": 34000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": false,
+        "cambio": true,
+        "estado_geral": false,
+        "avarias": true,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": true,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      }
+    },
+    {
+      "id": 5,
+      "input": "Compass 2021 automático, 8.000 km rodados, único dono, sem avarias. R$ 45.000, só quitar o financiamento.",
+      "esperado": {
+        "marca": "Jeep",
+        "modelo": "Compass",
+        "ano": 2021,
+        "km": 8000,
+        "cambio": "automatico",
+        "estado_geral": "excelente",
+        "avarias": [],
+        "preco_anunciado": 45000,
+        "faixa_preco_justo": "abaixo_da_media",
+        "sinais_atencao": [
+          "preco_muito_abaixo_da_media",
+          "mencao_a_sinistro_leilao_ou_urgencia"
+        ]
+      },
+      "saida_base": {
+        "marca": "Compass",
+        "modelo": "2021",
+        "ano": 2021,
+        "km": 8000,
+        "cambio": "automático",
+        "estado_geral": "excepcional",
+        "avarias": [
+          "excepcional"
+        ],
+        "preco_anunciado": "R$ 45.000",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "Não há avarius"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Compass",
+        "ano": 2021,
+        "km": 8000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 45000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": false,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      }
+    },
+    {
+      "id": 6,
+      "input": "Gol 2015 manual, 95.000 km rodados, revisões em dia, sem avarias. R$ 42.000.",
+      "esperado": {
+        "marca": "Volkswagen",
+        "modelo": "Gol",
+        "ano": 2015,
+        "km": 95000,
+        "cambio": "manual",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 42000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "saida_base": {
+        "marca": "Gol",
+        "modelo": "2015",
+        "ano": 2015,
+        "km": 95000,
+        "cambio": "manual",
+        "estado_geral": "excepcional",
+        "avarias": [
+          "excepcional"
+        ],
+        "preco_anunciado": "R$ 42.000",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "Avaliação excepcional"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Volkswagen",
+        "modelo": "Golf",
+        "ano": 2015,
+        "km": 95000,
+        "cambio": "manual",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 42000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": true,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": true,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": true
+      }
+    },
+    {
+      "id": 7,
+      "input": "T-Cross 2022 automático, 15.000 km rodados, único dono, revisões em dia, sem avarias. R$ 102.000.",
+      "esperado": {
+        "marca": "Volkswagen",
+        "modelo": "T-Cross",
+        "ano": 2022,
+        "km": 15000,
+        "cambio": "automatico",
+        "estado_geral": "excelente",
+        "avarias": [],
+        "preco_anunciado": 102000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "saida_base": {
+        "marca": "T-Cross",
+        "modelo": "2022",
+        "ano": 2022,
+        "km": 15000,
+        "cambio": "automático",
+        "estado_geral": "excepcional",
+        "avarias": [
+          "excepcional"
+        ],
+        "preco_anunciado": "R$ 102.000",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "Revisões em dia",
+          "Sem avarias"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Volkswagen",
+        "modelo": "T-Cross",
+        "ano": 2022,
+        "km": 15000,
+        "cambio": "automático",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 102000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": true,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": true
+      }
+    },
+    {
+      "id": 8,
+      "input": "Kicks 2019 manual, 3.000 km rodados. Carro impecável, sem nenhum detalhe, simplesmente perfeito. R$ 40.000.",
+      "esperado": {
+        "marca": "Nissan",
+        "modelo": "Kicks",
+        "ano": 2019,
+        "km": 3000,
+        "cambio": "manual",
+        "estado_geral": "excelente",
+        "avarias": [],
+        "preco_anunciado": 40000,
+        "faixa_preco_justo": "abaixo_da_media",
+        "sinais_atencao": [
+          "km_incompativel_com_idade",
+          "preco_muito_abaixo_da_media",
+          "descricao_vaga_excessivamente_positiva"
+        ]
+      },
+      "saida_base": {
+        "marca": "Kicks",
+        "modelo": "2019",
+        "ano": 2019,
+        "km": 3000,
+        "cambio": "manual",
+        "estado_geral": "excelente",
+        "avarias": [
+          "impecável"
+        ],
+        "preco_anunciado": "$40.000",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "Carro impecável, sem nenhum detalhe"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Kicks",
+        "ano": 2019,
+        "km": 3000,
+        "cambio": "manual",
+        "estado_geral": "excellent",
+        "avarias": [],
+        "preco_anunciado": 40000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": true,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": false,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      }
+    },
+    {
+      "id": 9,
+      "input": "Renegade 2020 automático, 40.000 km rodados, revisões em dia, único detalhe é pequeno amassado na porta. R$ 78.000, aceito troca.",
+      "esperado": {
+        "marca": "Jeep",
+        "modelo": "Renegade",
+        "ano": 2020,
+        "km": 40000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [
+          "pequeno amassado na porta"
+        ],
+        "preco_anunciado": 78000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "saida_base": {
+        "marca": "Renegade",
+        "modelo": "2020",
+        "ano": 2020,
+        "km": 40000,
+        "cambio": "automático",
+        "estado_geral": "excepcional",
+        "avarias": [
+          "pequeno amassado na porta"
+        ],
+        "preco_anunciado": "R$ 78.000",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "Pequeno amassado na porta"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Volkswagen",
+        "modelo": "Renegade",
+        "ano": 2020,
+        "km": 40000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [
+          "pequeno amassado na porta"
+        ],
+        "preco_anunciado": 78000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": true,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": true,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": true
+      }
+    },
+    {
+      "id": 10,
+      "input": "Argo 2018 manual, 70.000 km rodados, único dono, sem avarias. R$ 52.000.",
+      "esperado": {
+        "marca": "Fiat",
+        "modelo": "Argo",
+        "ano": 2018,
+        "km": 70000,
+        "cambio": "manual",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 52000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "saida_base": {
+        "marca": "Renault",
+        "modelo": "Clio",
+        "ano": 2018,
+        "km": 70000,
+        "cambio": "Manual",
+        "estado_geral": "Excelente",
+        "avarias": [
+          "Audi A4"
+        ],
+        "preco_anunciado": "R$ 52.000",
+        "faixa_preco_justo": "Dentro da media",
+        "sinais_atencao": [
+          "Não há avarius"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Sonata",
+        "ano": 2018,
+        "km": 70000,
+        "cambio": "manual",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 52000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": true,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": true
+      }
+    },
+    {
+      "id": 11,
+      "input": "Hilux 2016 automático, 180.000 km rodados, revisões em dia, único detalhe é farol com condensação leve. R$ 95.000. Teve uma batida leve mas está tudo certo.",
+      "esperado": {
+        "marca": "Toyota",
+        "modelo": "Hilux",
+        "ano": 2016,
+        "km": 180000,
+        "cambio": "automatico",
+        "estado_geral": "regular",
+        "avarias": [
+          "farol com condensação leve"
+        ],
+        "preco_anunciado": 95000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": [
+          "mencao_a_sinistro_leilao_ou_urgencia"
+        ]
+      },
+      "saida_base": {
+        "marca": "Hyundai",
+        "modelo": "Elantra",
+        "ano": 2016,
+        "km": 180.0,
+        "cambio": "Automático",
+        "estado_geral": "Excelente",
+        "avarias": [
+          "Fábrica"
+        ],
+        "preco_anunciado": "R$ 95.000",
+        "faixa_preco_justo": "Dentro da media",
+        "sinais_atencao": [
+          {
+            "detalhamento": "Batida leve",
+            "status": "Bem"
+          }
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Hilux",
+        "ano": 2016,
+        "km": 180000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 95000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": [
+          "batida_leve"
+        ]
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": false,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": false
+      }
+    },
+    {
+      "id": 12,
+      "input": "Creta 2021 automático, 30.000 km rodados, único dono, sem avarias. R$ 95.000.",
+      "esperado": {
+        "marca": "Hyundai",
+        "modelo": "Creta",
+        "ano": 2021,
+        "km": 30000,
+        "cambio": "automatico",
+        "estado_geral": "excelente",
+        "avarias": [],
+        "preco_anunciado": 95000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "saida_base": {
+        "marca": "Creta",
+        "modelo": "2021",
+        "ano": 2021,
+        "km": 30000,
+        "cambio": "automático",
+        "estado_geral": "excepcional",
+        "avarias": [
+          "excepcional"
+        ],
+        "preco_anunciado": "R$ 95.000",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "Não há avarius"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Creta",
+        "ano": 2021,
+        "km": 30000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 95000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": false,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": true
+      }
+    },
+    {
+      "id": 13,
+      "input": "Fit 2014 manual, 500.000 km rodados, revisões em dia, sem avarias. R$ 18.000. Sinistro recuperado, rodando perfeitamente.",
+      "esperado": {
+        "marca": "Honda",
+        "modelo": "Fit",
+        "ano": 2014,
+        "km": 500000,
+        "cambio": "manual",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 18000,
+        "faixa_preco_justo": "abaixo_da_media",
+        "sinais_atencao": [
+          "km_incompativel_com_idade",
+          "preco_muito_abaixo_da_media",
+          "mencao_a_sinistro_leilao_ou_urgencia"
+        ]
+      },
+      "saida_base": {
+        "marca": "Honda",
+        "modelo": "Fit",
+        "ano": 2014,
+        "km": 500000,
+        "cambio": "Manual",
+        "estado_geral": "Excelente",
+        "avarias": [
+          "A",
+          "B"
+        ],
+        "preco_anunciado": "R$ 18.000",
+        "faixa_preco_justo": "Dentro da media",
+        "sinais_atencao": [
+          "Sinistro recuperado"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Cortina",
+        "ano": 2014,
+        "km": 500000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [],
+        "preco_anunciado": 18000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": true,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": true,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      }
+    },
+    {
+      "id": 14,
+      "input": "Tucson 2019 automático, 55.000 km rodados, revisões em dia, único detalhe é pequeno chip no para-brisa. R$ 108.000.",
+      "esperado": {
+        "marca": "Hyundai",
+        "modelo": "Tucson",
+        "ano": 2019,
+        "km": 55000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [
+          "pequeno chip no para-brisa"
+        ],
+        "preco_anunciado": 108000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "saida_base": {
+        "marca": "Tucson",
+        "modelo": "2019",
+        "ano": 2019,
+        "km": 55000,
+        "cambio": "automático",
+        "estado_geral": "excepcional",
+        "avarias": [
+          "sem avias"
+        ],
+        "preco_anunciado": "R$ 108.000",
+        "faixa_preco_justo": "dentro da media",
+        "sinais_atencao": [
+          "Detalhe pequeno no para-brisa"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Tucson",
+        "ano": 2019,
+        "km": 55000,
+        "cambio": "automatico",
+        "estado_geral": "bom",
+        "avarias": [
+          "pequeno chip no para-brisa"
+        ],
+        "preco_anunciado": 108000,
+        "faixa_preco_justo": "dentro_da_media",
+        "sinais_atencao": []
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": false,
+        "modelo": true,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": true,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": true
+      }
+    },
+    {
+      "id": 15,
+      "input": "S10 2017 automático, 15.000 km rodados. Melhor carro que você vai encontrar, sem defeitos, aceito qualquer proposta. R$ 60.000.",
+      "esperado": {
+        "marca": "Chevrolet",
+        "modelo": "S10",
+        "ano": 2017,
+        "km": 15000,
+        "cambio": "automatico",
+        "estado_geral": "excelente",
+        "avarias": [],
+        "preco_anunciado": 60000,
+        "faixa_preco_justo": "abaixo_da_media",
+        "sinais_atencao": [
+          "km_incompativel_com_idade",
+          "preco_muito_abaixo_da_media",
+          "descricao_vaga_excessivamente_positiva"
+        ]
+      },
+      "saida_base": {
+        "marca": "Renault",
+        "modelo": "Clio",
+        "ano": 2017,
+        "km": 15000,
+        "cambio": "Automático",
+        "estado_geral": "Excelente",
+        "avarias": [
+          "Audi A4",
+          "BMW X3"
+        ],
+        "preco_anunciado": "R$ 60.000",
+        "faixa_preco_justo": "Dentro da media",
+        "sinais_atencao": [
+          "Carro com problemas mecânicos",
+          "Carro com defeitos"
+        ]
+      },
+      "saida_lora": {
+        "marca": "Chevrolet",
+        "modelo": "Camaro",
+        "ano": 2017,
+        "km": 15000,
+        "cambio": "automatico",
+        "estado_geral": "excepcional",
+        "avarias": [],
+        "preco_anunciado": 60000,
+        "faixa_preco_justo": "abaixo_da_media",
+        "sinais_atencao": [
+          "carro_mal_operado",
+          "defeitos"
+        ]
+      },
+      "acertos_base": {
+        "marca": false,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": false,
+        "estado_geral": false,
+        "avarias": false,
+        "preco_anunciado": false,
+        "faixa_preco_justo": false,
+        "sinais_atencao": false
+      },
+      "acertos_lora": {
+        "marca": true,
+        "modelo": false,
+        "ano": true,
+        "km": true,
+        "cambio": true,
+        "estado_geral": false,
+        "avarias": true,
+        "preco_anunciado": true,
+        "faixa_preco_justo": true,
+        "sinais_atencao": false
+      }
+    }
+  ]
+}
