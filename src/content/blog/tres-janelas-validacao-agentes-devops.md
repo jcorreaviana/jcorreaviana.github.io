@@ -3,7 +3,7 @@ title: 'Três janelas de validação real: o que aprendi construindo agentes aut
 description: 'Três janelas de validação real num sistema de agentes autônomos de DevOps: o que funcionou, o que quebrou, e os bugs encontrados testando o próprio sistema.'
 pubDate: 2026-09-01
 category: 'rag-agentes'
-heroImage: '../../assets/hero-build-run-bank-of-decoy.svg'
+heroImage: '../../assets/hero-build-run-bank-of-decoy.png'
 tags: ['agentes', 'devops', 'claude-code', 'chaos-engineering']
 ---
 
