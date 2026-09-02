@@ -7,8 +7,6 @@ heroImage: '../../assets/hero-build-run-bank-of-decoy.png'
 tags: ['agentes', 'devops', 'claude-code', 'chaos-engineering']
 ---
 
-# Três janelas de validação real: o que aprendi construindo agentes autônomos de DevOps
-
 Nos últimos dias rodei três janelas de validação real no `bank-of-decoy`, um projeto pessoal que simula um domínio de pagamentos PIX (quatro microsserviços, chaos engineering, e uma camada de agentes autônomos que detecta problemas, corrige código e decide sozinha entre subir a correção ou pedir revisão humana). Este artigo cobre o que essas três janelas mostraram, sem esconder o que não funcionou.
 
 ## Contexto e escopo da solução
