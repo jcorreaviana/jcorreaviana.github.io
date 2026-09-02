@@ -1,0 +1,64 @@
+---
+---
+
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro/escuro">
+	<svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+		<path
+			fill="currentColor"
+			d="M12 4a1 1 0 0 1-1-1V1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1Zm0 19a1 1 0 0 1-1-1v-2a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1ZM4.929 6.343a1 1 0 0 1-.707-.293L2.808 4.636a1 1 0 1 1 1.414-1.414l1.414 1.414a1 1 0 0 1-.707 1.707Zm14.849 14.849a1 1 0 0 1-.707-.293l-1.414-1.414a1 1 0 1 1 1.414-1.414l1.414 1.414a1 1 0 0 1-.707 1.707ZM3 13H1a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2Zm20 0h-2a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2ZM4.222 20.485a1 1 0 0 1-.707-1.707l1.414-1.414a1 1 0 1 1 1.414 1.414l-1.414 1.414a1 1 0 0 1-.707.293ZM18.192 6.343a1 1 0 0 1-.707-1.707l1.414-1.414a1 1 0 1 1 1.414 1.414l-1.414 1.414a1 1 0 0 1-.707.293ZM12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Z"
+		></path>
+	</svg>
+	<svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+		<path
+			fill="currentColor"
+			d="M12.1 22c-5.523 0-10-4.477-10-10 0-4.418 2.865-8.166 6.839-9.489a1 1 0 0 1 1.253 1.31A7.5 7.5 0 0 0 20.18 13.91a1 1 0 0 1 1.31 1.253C20.166 19.136 16.518 22 12.1 22Z"
+		></path>
+	</svg>
+</button>
+
+<style>
+	.theme-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25em;
+		height: 2.25em;
+		padding: 0;
+		border: none;
+		border-radius: 50%;
+		background: transparent;
+		color: rgb(var(--gray-dark));
+		cursor: pointer;
+	}
+	.theme-toggle:hover {
+		background: rgba(var(--gray), 15%);
+	}
+	.icon-moon {
+		display: none;
+	}
+	:root[data-theme='dark'] .icon-sun {
+		display: none;
+	}
+	:root[data-theme='dark'] .icon-moon {
+		display: block;
+	}
+</style>
+
+<script>
+	const STORAGE_KEY = 'theme';
+	const button = document.getElementById('theme-toggle');
+	const root = document.documentElement;
+
+	const syncPressedState = () => {
+		button?.setAttribute('aria-pressed', String(root.getAttribute('data-theme') === 'dark'));
+	};
+
+	button?.addEventListener('click', () => {
+		const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+		root.setAttribute('data-theme', next);
+		localStorage.setItem(STORAGE_KEY, next);
+		syncPressedState();
+	});
+
+	syncPressedState();
+</script>

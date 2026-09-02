@@ -54,14 +54,14 @@ export default function ConfusionMatrixDemo() {
 
   return (
     <div style={{ padding: '1rem 0', fontFamily: 'inherit' }}>
-      <p style={{ fontSize: 14, color: '#666', marginBottom: 16 }}>
+      <p style={{ fontSize: 14, color: 'var(--demo-text-muted)', marginBottom: 16 }}>
         Base simulada: {TOTAL_FRAUD} transações fraudulentas e {TOTAL_LEGIT} legítimas (taxa de fraude real ≈ {Math.round((TOTAL_FRAUD / (TOTAL_FRAUD + TOTAL_LEGIT)) * 100)}%).
         Ajuste o threshold de decisão do modelo (score acima do qual uma transação é marcada como fraude)
         e veja como a matriz de confusão e as métricas reagem.
       </p>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
-        <span style={{ fontSize: 13, color: '#666', minWidth: 70 }}>Threshold</span>
+        <span style={{ fontSize: 13, color: 'var(--demo-text-muted)', minWidth: 70 }}>Threshold</span>
         <input
           type="range"
           min={0}
@@ -99,25 +99,25 @@ export default function ConfusionMatrixDemo() {
       </div>
 
       <div style={{ display: 'flex', gap: 16 }}>
-        <div style={{ flex: 1, background: '#f5f5f3', borderRadius: 12, padding: 16 }}>
-          <div style={{ fontSize: 12, color: '#666' }}>Recall</div>
-          <div style={{ fontSize: 26, fontWeight: 600 }}>{Math.round(recall * 100)}%</div>
-          <div style={{ fontSize: 12, color: '#888' }}>fraudes reais capturadas</div>
+        <div style={{ flex: 1, background: 'var(--demo-panel-bg)', borderRadius: 12, padding: 16 }}>
+          <div style={{ fontSize: 12, color: 'var(--demo-text-muted)' }}>Recall</div>
+          <div style={{ fontSize: 26, fontWeight: 600, color: 'var(--demo-text-strong)' }}>{Math.round(recall * 100)}%</div>
+          <div style={{ fontSize: 12, color: 'var(--demo-text-muted-light)' }}>fraudes reais capturadas</div>
         </div>
-        <div style={{ flex: 1, background: '#f5f5f3', borderRadius: 12, padding: 16 }}>
-          <div style={{ fontSize: 12, color: '#666' }}>Precision</div>
-          <div style={{ fontSize: 26, fontWeight: 600 }}>
+        <div style={{ flex: 1, background: 'var(--demo-panel-bg)', borderRadius: 12, padding: 16 }}>
+          <div style={{ fontSize: 12, color: 'var(--demo-text-muted)' }}>Precision</div>
+          <div style={{ fontSize: 26, fontWeight: 600, color: 'var(--demo-text-strong)' }}>
             {precision === null ? '—' : `${Math.round(precision * 100)}%`}
           </div>
-          <div style={{ fontSize: 12, color: '#888' }}>
+          <div style={{ fontSize: 12, color: 'var(--demo-text-muted-light)' }}>
             {precision === null ? 'nenhum alerta emitido' : 'alertas que eram fraude de fato'}
           </div>
         </div>
       </div>
 
       <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <p style={{ fontSize: 13, color: '#555', lineHeight: 1.6, margin: 0 }}>{recallText}</p>
-        <p style={{ fontSize: 13, color: '#555', lineHeight: 1.6, margin: 0 }}>{precisionText}</p>
+        <p style={{ fontSize: 13, color: 'var(--demo-text-soft)', lineHeight: 1.6, margin: 0 }}>{recallText}</p>
+        <p style={{ fontSize: 13, color: 'var(--demo-text-soft)', lineHeight: 1.6, margin: 0 }}>{precisionText}</p>
       </div>
     </div>
   );

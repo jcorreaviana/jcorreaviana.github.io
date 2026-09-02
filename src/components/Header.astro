@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header>
@@ -11,6 +12,7 @@ import HeaderLink from './HeaderLink.astro';
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
+		<div class="nav-end">
 		<div class="social-links">
 			<!-- Mastodon temporariamente removido, revisar depois
 			<a href="https://m.webtoo.ls/@astro" target="_blank">
@@ -42,13 +44,15 @@ import HeaderLink from './HeaderLink.astro';
 				>
 			</a>
 		</div>
+			<ThemeToggle />
+		</div>
 	</nav>
 </header>
 <style>
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: white;
+		background: var(--bg-surface);
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
 	}
 	h2 {
@@ -74,6 +78,11 @@ import HeaderLink from './HeaderLink.astro';
 	nav a.active {
 		text-decoration: none;
 		border-bottom-color: var(--accent);
+	}
+	.nav-end {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
 	}
 	.social-links,
 	.social-links a {

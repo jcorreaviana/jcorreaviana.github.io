@@ -22,7 +22,7 @@ const FIELD_LABELS = {
 const COLORS = {
   goodBg: '#E1F5EE', goodBorder: '#5DCAA5', goodText: '#085041',
   badBg: '#FAECE7', badBorder: '#F0997B', badText: '#712B13',
-  panelBg: '#f5f5f3', muted: '#666', mutedLight: '#888',
+  panelBg: 'var(--demo-panel-bg)', muted: 'var(--demo-text-muted)', mutedLight: 'var(--demo-text-muted-light)',
 };
 
 function formatarValor(valor) {
@@ -55,7 +55,7 @@ function CampoLinha({ campo, valor, acerto }) {
         style={{
           fontSize: 12,
           textAlign: 'right',
-          color: temAcerto ? (acerto ? COLORS.goodText : COLORS.badText) : '#333',
+          color: temAcerto ? (acerto ? COLORS.goodText : COLORS.badText) : 'var(--demo-text-strong)',
           fontWeight: temAcerto ? 600 : 400,
           wordBreak: 'break-word',
         }}
@@ -113,10 +113,10 @@ function BarraComparativa({ campo, valores }) {
         </span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-        <div style={{ background: '#e8e8e5', borderRadius: 6, height: 10, overflow: 'hidden' }}>
+        <div style={{ background: 'var(--demo-track-bg)', borderRadius: 6, height: 10, overflow: 'hidden' }}>
           <div style={{ width: `${pctBase}%`, height: '100%', background: COLORS.badBorder, borderRadius: 6, transition: 'width 0.2s' }} />
         </div>
-        <div style={{ background: '#e8e8e5', borderRadius: 6, height: 10, overflow: 'hidden' }}>
+        <div style={{ background: 'var(--demo-track-bg)', borderRadius: 6, height: 10, overflow: 'hidden' }}>
           <div style={{ width: `${pctLora}%`, height: '100%', background: COLORS.goodBorder, borderRadius: 6, transition: 'width 0.2s' }} />
         </div>
       </div>
@@ -134,15 +134,15 @@ export default function FineTuningDemo() {
     <div style={{ padding: '1rem 0', fontFamily: 'inherit' }}>
       <style>{`
         .ftd-coluna { flex: 1; min-width: 0; background: ${COLORS.panelBg}; border-radius: 12px; padding: 14px; }
-        .ftd-coluna-titulo { font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #222; }
+        .ftd-coluna-titulo { font-size: 13px; font-weight: 600; margin-bottom: 10px; color: var(--demo-text-strong); }
         .ftd-colunas { display: flex; gap: 14px; }
         .ftd-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
         .ftd-nav button {
-          background: #222; color: #fff; border: none; border-radius: 8px;
+          background: var(--demo-btn-bg); color: var(--demo-btn-text); border: none; border-radius: 8px;
           padding: 6px 14px; font-size: 13px; cursor: pointer;
         }
-        .ftd-nav button:disabled { background: #ccc; cursor: not-allowed; }
-        .ftd-nav select { font-size: 13px; padding: 5px 8px; border-radius: 8px; border: 1px solid #ccc; }
+        .ftd-nav button:disabled { background: var(--demo-btn-bg-disabled); cursor: not-allowed; }
+        .ftd-nav select { font-size: 13px; padding: 5px 8px; border-radius: 8px; border: 1px solid var(--demo-border); background: var(--demo-card-bg); color: var(--demo-text-strong); }
         @media (max-width: 720px) {
           .ftd-colunas { flex-direction: column; }
         }
@@ -171,11 +171,11 @@ export default function FineTuningDemo() {
         </button>
       </div>
 
-      <div style={{ background: '#fff', border: '1px solid #e0e0dc', borderRadius: 12, padding: 14, marginBottom: 16 }}>
+      <div style={{ background: 'var(--demo-card-bg)', border: '1px solid var(--demo-border)', borderRadius: 12, padding: 14, marginBottom: 16 }}>
         <div style={{ fontSize: 11, color: COLORS.mutedLight, marginBottom: 4, textTransform: 'uppercase', letterSpacing: 0.5 }}>
           Anúncio (input)
         </div>
-        <div style={{ fontSize: 14, color: '#222', lineHeight: 1.5 }}>{exemplo.input}</div>
+        <div style={{ fontSize: 14, color: 'var(--demo-text-strong)', lineHeight: 1.5 }}>{exemplo.input}</div>
       </div>
 
       <div className="ftd-colunas" style={{ marginBottom: 24 }}>
@@ -194,12 +194,12 @@ export default function FineTuningDemo() {
         <ColunaModelo
           titulo="Esperado (ground truth)"
           dados={exemplo.esperado}
-          accent="#999"
+          accent="var(--demo-text-muted-light)"
         />
       </div>
 
       <div style={{ background: COLORS.panelBg, borderRadius: 12, padding: 16 }}>
-        <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4, color: '#222' }}>
+        <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4, color: 'var(--demo-text-strong)' }}>
           Resumo agregado — 15 exemplos held-out
         </div>
         <div style={{ fontSize: 12, color: COLORS.muted, marginBottom: 14 }}>
@@ -209,7 +209,7 @@ export default function FineTuningDemo() {
         {CAMPOS_ORDEM.map((campo) => (
           <BarraComparativa key={campo} campo={campo} valores={resumo_por_campo[campo]} />
         ))}
-        <div style={{ borderTop: '1px solid #ddd', paddingTop: 12, marginTop: 4 }}>
+        <div style={{ borderTop: '1px solid var(--demo-divider)', paddingTop: 12, marginTop: 4 }}>
           <BarraComparativa campo="exact_match" valores={resumo_por_campo.exact_match} />
         </div>
       </div>

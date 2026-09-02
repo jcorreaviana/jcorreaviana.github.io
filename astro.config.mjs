@@ -9,6 +9,15 @@ import react from '@astrojs/react';
 export default defineConfig({
     site: 'https://jcorreaviana.github.io',
     integrations: [mdx(), sitemap(), react()],
+    markdown: {
+        shikiConfig: {
+            themes: {
+                light: 'github-light',
+                dark: 'github-dark',
+            },
+            defaultColor: false,
+        },
+    },
     fonts: [
         {
             provider: fontProviders.local(),

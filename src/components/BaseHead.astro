@@ -26,6 +26,22 @@ const {
 } = Astro.props;
 ---
 
+<!-- Aplica o tema antes do primeiro paint, evitando flash de tema errado (FOUC) -->
+<script is:inline>
+	(function () {
+		try {
+			var stored = localStorage.getItem('theme');
+			var theme =
+				stored === 'light' || stored === 'dark'
+					? stored
+					: window.matchMedia('(prefers-color-scheme: dark)').matches
+						? 'dark'
+						: 'light';
+			document.documentElement.setAttribute('data-theme', theme);
+		} catch (e) {}
+	})();
+</script>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />

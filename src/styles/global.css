@@ -15,6 +15,47 @@
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
+	--bg-surface: #ffffff;
+	color-scheme: light;
+
+	/* Cores neutras dos widgets React (ConfusionMatrixDemo, FineTuningDemo) */
+	--demo-card-bg: #ffffff;
+	--demo-panel-bg: #f5f5f3;
+	--demo-border: #e0e0dc;
+	--demo-divider: #dddddd;
+	--demo-track-bg: #e8e8e5;
+	--demo-text-strong: #222222;
+	--demo-text-soft: #555555;
+	--demo-text-muted: #666666;
+	--demo-text-muted-light: #888888;
+	--demo-btn-bg: #222222;
+	--demo-btn-bg-disabled: #cccccc;
+	--demo-btn-text: #ffffff;
+}
+
+[data-theme='dark'] {
+	--accent: #7c93ff;
+	--accent-dark: #5468d6;
+	--black: 236, 239, 244;
+	--gray: 148, 163, 184;
+	--gray-light: 51, 58, 73;
+	--gray-dark: 214, 219, 229;
+	--gray-gradient: rgba(30, 34, 44, 60%), #0d0f14;
+	--bg-surface: #12141b;
+	color-scheme: dark;
+
+	--demo-card-bg: #1b1e26;
+	--demo-panel-bg: #20232c;
+	--demo-border: #383c46;
+	--demo-divider: #3a3e48;
+	--demo-track-bg: #383c46;
+	--demo-text-strong: #e8eaed;
+	--demo-text-soft: #b8bcc4;
+	--demo-text-muted: #a0a6b1;
+	--demo-text-muted-light: #8a909c;
+	--demo-btn-bg: #e8eaed;
+	--demo-btn-bg-disabled: #4b4f58;
+	--demo-btn-text: #1b1e26;
 }
 body {
 	font-family: var(--font-atkinson);
@@ -155,4 +196,18 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+/* Shiki gera --shiki-light/--shiki-dark por token (markdown.shikiConfig em astro.config.mjs);
+   aqui escolhemos qual par aplicar de acordo com o tema ativo. */
+.astro-code,
+.astro-code span {
+	color: var(--shiki-light);
+	background-color: var(--shiki-light-bg);
+}
+
+[data-theme='dark'] .astro-code,
+[data-theme='dark'] .astro-code span {
+	color: var(--shiki-dark);
+	background-color: var(--shiki-dark-bg);
 }
