@@ -1,13 +1,16 @@
 ---
 import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
 import Layout from '../layouts/BlogPost.astro';
+import { LINKEDIN_URL } from '../consts';
+import { Content, frontmatter } from '../../about/sobre-mim-carreira.md';
 ---
 
 <Layout
-	title="About Me"
-	description="Página em construção"
-	pubDate={new Date('August 08 2021')}
+	title={frontmatter.title}
+	description={frontmatter.description}
+	pubDate={new Date(frontmatter.pubDate)}
 	heroImage={AboutHeroImage}
 >
-	<p>Esta página está em construção. Volte em breve.</p>
+	<Content />
+	<p>LinkedIn: <a href={LINKEDIN_URL} target="_blank" rel="noopener">{LINKEDIN_URL}</a></p>
 </Layout>
